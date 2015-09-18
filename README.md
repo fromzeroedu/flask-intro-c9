@@ -1,13 +1,13 @@
-### Step #21
+### Step #20
 
-### Start the main db:
+### Start the Mysql database:
 ```
-docker run --name db -e MYSQL_ROOT_PASSWORD=test -d -p 3306:3306 mariadb
+mysql-ctl start
 ```
 
-### Create the database, running a temporary client:
+### Enter the Mysql terminal:
 ```
-docker run --name mysql-client -it --link db:mysql --rm mariadb sh -c 'exec mysql -uroot -ptest -hmysql'
+mysql-ctl cli
 ```
 
 Once inside MySQL:
@@ -22,13 +22,7 @@ CREATE TABLE user(
     );
 INSERT INTO user VALUES('', 'jorge', '12345');
 ```
-
-### Build the new image:
+### Add PyMySQL to requirements.txt and pip install:
 ```
-docker build -t flask-intro-mysql .
-```
-
-### Run the container with volume and sql connection
-```
-docker run -d -p 5000:5000 -v /Users/jorge/flask-intro:/opt/flask-intro --name web --link db:mysql flask-intro-mysql
+pip install -r requirements.txt
 ```
