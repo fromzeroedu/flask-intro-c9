@@ -1,8 +1,9 @@
+import os
+import pymysql
+
 from flask import Flask, request, render_template, redirect, url_for, flash, session
 import logging
 from logging.handlers import RotatingFileHandler
-import pymysql
-import os
 
 app = Flask(__name__)
 
